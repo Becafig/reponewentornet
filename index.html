@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entornet Fibra - Muito Mais Conexão</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <!-- AOS Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- Loading Screen -->
+<div class="loading-screen">
+    <div class="loader">
+        <div class="loader-text">Entornet Fibra</div>
+        <div class="loader-subtitle">
+    <span>Muito</span> 
+    <span>mais</span> 
+    <span>que</span> 
+    <span>apenas</span> 
+    <span>uma</span> 
+    <span>conexão.</span>
+</div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="gamerModalOverlay">
+    <div class="modal-window" id="gamerModalWindow" data-aos="zoom-in" data-aos-duration="500">
+        
+        <div class="modal-left">
+            <div class="modal-award-seal">
+                <i class="fas fa-trophy"></i>
+                <span>Prêmio 2025</span>
+            </div>
+            <div class="award-logo">MelhorPlano.net</div>
+            
+            <h3 class="modal-title-left">A Conexão Definitiva para Vencer</h3>
+            <p class="modal-text-left">Eleita a Melhor Internet Gamer 2025 em Casimiro de Abreu e Região.</p>
+            <span class="modal-source">Análise e prêmio oficial por MelhorPlano.net</span>
+        </div>
+        
+        <div class="modal-right">
+            <button class="modal-close" id="modalCloseBtn">&times;</button>
+            <h2 class="modal-title-right">Jogue sem lag com a <span class="text-gradient">menor latência</span> da região.</h2>
+            <p class="modal-text-right">Escolha sua cidade e descubra o plano ideal para um desempenho imbatível.</p>
+            
+            <form class="modal-form">
+                <select class="modal-select">
+                    <option value="">Selecione sua cidade</option>
+                    <option value="casimiro">Casimiro de Abreu</option>
+                    <option value="souza">Professor Souza</option>
+                    <option value="barra">Barra de São João</option>
+                </select>
+                <a href="#plans" class="btn-modal-primary" id="modalConhecerBtn">
+                    <span>CONHECER PLANOS</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+
+    <!-- Cursor Effect -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="images/logo.png" alt="Entornet Fibra" class="nav-logo">
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#plans" class="nav-link">Planos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#benefits" class="nav-link">Benefícios</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#coverage" class="nav-link">Cobertura</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#support" class="nav-link">Suporte</a>
+                </li>
+            </ul>
+
+            <div class="nav-cta">
+                <a href="#contact" class="btn-gradient">
+                    <span>Assinar Agora</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="hero-particles"></div>
+            <div class="hero-gradient"></div>
+        </div>
+
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="hero-badge" data-aos="fade-up">
+                        <i class="fas fa-bolt"></i> Fibra Óptica de Verdade
+                    </span>
+                    
+                    <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+                        Muito Mais <span class="text-gradient">Conexão</span><br>
+                        Para Sua <span class="text-highlight">Vida Digital</span>
+                    </h1>
+                    
+                    <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
+                        Há 21 anos levando internet de altíssima velocidade para Casimiro de Abreu 
+                        e região. Tecnologia de ponta, atendimento humanizado e a melhor experiência 
+                        em conectividade.
+                    </p>
+
+                    <div class="hero-stats" data-aos="fade-up" data-aos-delay="300">
+                        <div class="stat-item">
+                            <span class="stat-number" data-value="21">0</span>
+                            <span class="stat-label">Anos de Experiência</span>
+                        </div>
+                        <div class="stat-item">
+                            <p>+<span class="stat-number" data-value="5000">0</span></p>
+                            <span class="stat-label">Clientes Satisfeitos</span>
+                        </div>
+                        <div class="stat-item">
+                            <p>%<span class="stat-number" data-value="99.9">0</span></p>
+                            <span class="stat-label">Uptime Garantido</span>
+                        </div>
+                    </div>
+
+                    <div class="hero-actions" data-aos="fade-up" data-aos-delay="400">
+                        <a href="#plans" class="btn-primary">
+                            <span>Ver Planos</span>
+                            <i class="fas fa-rocket"></i>
+                        </a>
+                        <a href="https://wa.me/552227781113" target="_blank" class="btn-secondary">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>Falar no WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-visual" data-aos="fade-left" data-aos-delay="500">
+                    <div class="hero-3d-card">
+<div class="speed-meter">
+    <div class="speed-circle">
+        <svg viewBox="0 0 200 200">
+            <defs>
+            <linearGradient id="ooklaGradient">
+            <stop offset="0%" stop-color="#8A2BE2" />
+            <stop offset="50%" stop-color="#00cabc" />
+            <stop offset="100%" stop-color="#FFD700" />     
+            </linearGradient>
+            </defs>
+            <circle class="speed-bg-new" cx="100" cy="100" r="90"></circle>
+            <circle class="speed-progress-new" cx="100" cy="100" r="90"></circle>
+        </svg>
+
+        <div class="gauge-needle-svg"></div>
+        <div class="gauge-center-dot-svg"></div>
+
+        <div class="speed-value-new">
+            <span class="stat-number" data-value="831" style="font-size: 2.5rem;">0</span>
+            <span class="speed-unit-new">Mbps</span>
+        </div>
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-wave">
+            <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+                <path d="M0,50 Q360,0 720,50 T1440,50 L1440,100 L0,100 Z"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section id="plans" class="plans">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge" data-aos="fade-up">
+                    <i class="fas fa-tags"></i> Nossos Planos
+                </span>
+                <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
+                    Escolha o Plano <span class="text-gradient">Perfeito</span> Para Você
+                </h2>
+                <p class="section-description" data-aos="fade-up" data-aos-delay="200">
+                    Internet de fibra óptica com velocidade garantida e sem franquia de dados
+                </p>
+            </div>
+
+            <div class="plans-tabs" data-aos="fade-up" data-aos-delay="300">
+                <button class="tab-btn active" data-tab="residencial">
+                    <i class="fas fa-home"></i> Residencial
+                </button>
+                <button class="btn-gamer" data-tab="gamer">
+                    <i class="fas fa-gamepad"></i> Gamer
+                </button>
+                <button class="emp" data-tab="empresarial">
+                    <i class="fas fa-building"></i> Empresarial
+                </button>
+            </div>
+
+            <div class="plans-grid" id="plansGrid">
+                <!-- Planos Residenciais -->
+                <div class="plans-content active" data-category="residencial">
+                    <div class="plan-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="plan-header">
+                            <h3 class="plan-name">Basic</h3>
+                            <div class="plan-speed">
+                                <span class="speed-value">200</span>
+                                <span class="speed-text">MEGA</span>
+                            </div>
+                        </div>
+                        <div class="plan-price">
+                            <span class="currency">R$</span>
+                            <span class="value">89</span>
+                            <span class="cents">,90</span>
+                            <span class="period">/mês</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Instalação Grátis</li>
+                            <li><i class="fas fa-check"></i> Wi-Fi AC Dual Band</li>
+                            <li><i class="fas fa-check"></i> Suporte 13/7</li>
+                            <li><i class="fas fa-check"></i> IP Dinâmico</li>
+                        </ul>
+                        <button class="plan-button">
+                            <span>Assinar Agora</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <div class="plan-card featured" data-aos="fade-up" data-aos-delay="200">
+                        <div class="plan-badge">Mais Vendido</div>
+                        <div class="plan-header">
+                            <h3 class="plan-name">Premium</h3>
+                            <div class="plan-speed">
+                                <span class="speed-value">500</span>
+                                <span class="speed-text">MEGA</span>
+                            </div>
+                        </div>
+                        <div class="plan-price">
+                            <span class="currency">R$</span>
+                            <span class="value">99</span>
+                            <span class="cents">,90</span>
+                            <span class="period">/mês</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Instalação Grátis</li>
+                            <li><i class="fas fa-check"></i> Wi-Fi 6 Premium</li>
+                            <li><i class="fas fa-check"></i> Suporte Prioritário</li>
+                            <li><i class="fas fa-check"></i> IP Fixo Grátis</li>
+                            <li><i class="fas fa-check"></i> Streaming 4K</li>
+                        </ul>
+                        <button class="plan-button featured-btn">
+                            <span>Assinar Agora</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <div class="plan-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="plan-header">
+                            <h3 class="plan-name">Ultra</h3>
+                            <div class="plan-speed">
+                                <span class="speed-value">650</span>
+                                <span class="speed-text">MEGA</span>
+                            </div>
+                        </div>
+                        <div class="plan-price">
+                            <span class="currency">R$</span>
+                            <span class="value">129</span>
+                            <span class="cents">,90</span>
+                            <span class="period">/mês</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Instalação Express</li>
+                            <li><i class="fas fa-check"></i> Wi-Fi 6E Top</li>
+                            <li><i class="fas fa-check"></i> Suporte VIP</li>
+                            <li><i class="fas fa-check"></i> IP Fixo Grátis</li>
+                            <li><i class="fas fa-check"></i> Gaming Mode</li>
+                        </ul>
+                        <button class="plan-button">
+                            <span>Assinar Agora</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Planos Gamer -->
+                <div class="plans-content" data-category="gamer">
+                    <div class="plan-card gamer-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="gamer-badge">
+                            <i class="fas fa-trophy"></i> Low Ping
+                        </div>
+                        <div class="plan-header">
+                            <h3 class="plan-name">Gamer Start</h3>
+                            <div class="plan-speed">
+                                <span class="speed-value">500</span>
+                                <span class="speed-text">MEGA</span>
+                            </div>
+                        </div>
+                        <div class="plan-price">
+                            <span class="currency">R$</span>
+                            <span class="value">119</span>
+                            <span class="cents">,90</span>
+                            <span class="period">/mês</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Ping Ultra Baixo</li>
+                            <li><i class="fas fa-check"></i> Prioridade Gaming</li>
+                            <li><i class="fas fa-check"></i> Ping < 5ms Principais Rotas</li>
+                            <li><i class="fas fa-check"></i> Roteamento Otimizado</li>
+                        </ul>
+                        <button class="plan-button gamer-btn">
+                            <span>Level Up</span>
+                            <i class="fas fa-gamepad"></i>
+                        </button>
+                    </div>
+
+                    <div class="plan-card gamer-card featured" data-aos="fade-up" data-aos-delay="200">
+                        <div class="pro2">Pro Player</div>
+                        <div class="plan-header">
+                            <h3 class="plan-name">Gamer Pro</h3>
+                            <div class="plan-speed">
+                                <span class="speed-value">650</span>
+                                <span class="speed-text">MEGA</span>
+                            </div>
+                        </div>
+                        <div class="plan-price">
+                            <span class="currency">R$</span>
+                            <span class="value">159</span>
+                            <span class="cents">,90</span>
+                            <span class="period">/mês</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Ping < 5ms Principais Rotas</li>
+                            <li><i class="fas fa-check"></i> QoS Gaming Premium</li>
+                            <li><i class="fas fa-check"></i> Port Forwarding</li>
+                            <li><i class="fas fa-check"></i> Cabo CAT6 Blindado</li>
+                            <li><i class="fas fa-check"></i> Suporte Gamer</li>
+                        </ul>
+                        <button class="plan-button gamer-btn featured-btn">
+                            <span>Level Up</span>
+                            <i class="fas fa-gamepad"></i>
+                        </button>
+                    </div>
+
+                    <div class="plan-card gamer-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="gamer-badge">
+                            <i class="fas fa-crown"></i> Elite
+                        </div>
+                        <div class="plan-header">
+                            <h3 class="plan-name">Gamer Elite</h3>
+                            <div class="plan-speed">
+                                <span class="speed-value">830</span>
+                                <span class="speed-text">Mega</span>
+                            </div>
+                        </div>
+                        <div class="plan-price">
+                            <span class="currency">R$</span>
+                            <span class="value">319</span>
+                            <span class="cents">,90</span>
+                            <span class="period">/mês</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Zero Lag</li>
+                            <li><i class="fas fa-check"></i> Servidor Dedicado</li>
+                            <li><i class="fas fa-check"></i> Cabo CAT6 Blindado</li>
+                            <li><i class="fas fa-check"></i> Streaming 8K</li>
+                            <li><i class="fas fa-check"></i> Técnico VIP</li>
+                        </ul>
+                        <button class="plan-button gamer-btn">
+                            <span>Level Up</span>
+                            <i class="fas fa-gamepad"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Planos Empresariais -->
+                <div class="plans-content" data-category="empresarial">
+                    <div class="plan-card business-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="plan-header">
+                            <h3 class="plan-name">Business Start</h3>
+                            <div class="plan-speed">
+                                <span class="speed-value">200</span>
+                                <span class="speed-text">MEGA</span>
+                            </div>
+                        </div>
+                        <div class="plan-price">
+                            <span class="currency">R$</span>
+                            <span class="value">179</span>
+                            <span class="cents">,90</span>
+                            <span class="period">/mês</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> SLA 99.9%</li>
+                            <li><i class="fas fa-check"></i> IP Publico Fixo</li>
+                            <li><i class="fas fa-check"></i> Suporte Business</li>
+                            <li><i class="fas fa-check"></i> Monitoramento 24/7</li>
+                        </ul>
+                        <button class="plan-button business-btn">
+                            <span>Contratar</span>
+                            <i class="fas fa-briefcase"></i>
+                        </button>
+                    </div>
+
+                    <div class="plan-card business-card featured" data-aos="fade-up" data-aos-delay="200">
+                        <div class="plan-badge">Recomendado</div>
+                        <div class="plan-header">
+                            <h3 class="plan-name">Business Pro</h3>
+                            <div class="plan-speed">
+                                <span class="speed-value">500</span>
+                                <span class="speed-text">MEGA</span>
+                            </div>
+                        </div>
+                        <div class="plan-price">
+                            <span class="currency">R$</span>
+                            <span class="value">199</span>
+                            <span class="cents">,90</span>
+                            <span class="period">/mês</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> SLA 99.95%</li>
+                            <li><i class="fas fa-check"></i> IP Publico Fixo</li>
+                            <li><i class="fas fa-check"></i> Link Empresarial</li>
+                            <li><i class="fas fa-check"></i> Monitoramento 24/7</li>
+                        </ul>
+                        <button class="plan-button business-btn featured-btn">
+                            <span>Contratar</span>
+                            <i class="fas fa-briefcase"></i>
+                        </button>
+                    </div>
+
+                    <div class="plan-card business-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="plan-header">
+                            <h3 class="plan-name">Corporate</h3>
+                            <div class="plan-speed">
+                                <span class="speed-value">1</span>
+                                <span class="speed-text">GIGA</span>
+                            </div>
+                        </div>
+                        <div class="plan-price">
+                            <span class="currency">R$</span>
+                            <span class="value">689</span>
+                            <span class="cents">,90</span>
+                            <span class="period">/mês</span>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> SLA 99.99%</li>
+                            <li><i class="fas fa-check"></i> IP Publico Fixo</li>
+                            <li><i class="fas fa-check"></i> Link Empresarial</li>
+                            <li><i class="fas fa-check"></i> Tecnico Especializado</li>
+                            <li><i class="fas fa-check"></i> Monitoramento 24/7</li>
+                        </ul>
+                        <button class="plan-button business-btn">
+                            <span>Contratar</span>
+                            <i class="fas fa-briefcase"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge" data-aos="fade-up">
+                    <i class="fas fa-star"></i> Vantagens Exclusivas
+                </span>
+                <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
+                    Por Que Somos a <span class="text-gradient">Melhor Escolha</span>?
+                </h2>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="benefit-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Velocidade Real</h3>
+                    <p>100% da velocidade contratada, sem pegadinhas ou letras miúdas</p>
+                </div>
+
+                <div class="benefit-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Estabilidade Garantida</h3>
+                    <p>99.9% de uptime com redundância e backup automático</p>
+                </div>
+
+                <div class="benefit-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="benefit-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Suporte Humanizado</h3>
+                    <p>Atendimento rápido e eficiente, sem robôs ou espera</p>
+                </div>
+
+                <div class="benefit-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="benefit-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Instalação Express</h3>
+                    <p>Tempo Medio de instalação de até 22H, equipe a prontidão</p>
+                </div>
+
+                <div class="benefit-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="benefit-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3>Wi-Fi Premium</h3>
+                    <p>Roteadores de última geração com cobertura total</p>
+                </div>
+
+                <div class="benefit-card" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="benefit-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3>Sem Limites</h3>
+                    <p>Internet ilimitada, sem franquia de dados</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coverage Section -->
+    <section id="coverage" class="coverage">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge" data-aos="fade-up">
+                    <i class="fas fa-map-marked-alt"></i> Área de Cobertura
+                </span>
+                <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
+                    Presente em Toda <span class="text-gradient">Região</span>
+                </h2>
+            </div>
+
+            <div class="coverage-content">
+                <div class="coverage-map" data-aos="fade-right">
+                    <div class="map-container">
+                        <div class="map-pin pin-1">
+                            <i class="fas fa-map-pin"></i>
+                            <span>Casimiro de Abreu</span>
+                        </div>
+                        <div class="map-pin pin-2">
+                            <i class="fas fa-map-pin"></i>
+                            <span>Professor Souza</span>
+                        </div>
+                        <div class="map-pin pin-3">
+                            <i class="fas fa-map-pin"></i>
+                            <span>Rio Dourado</span>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="coverage-info" data-aos="fade-left">
+                    <h3>Fibra Óptica de Ponta a Ponta</h3>
+                    <p>Nossa rede de fibra óptica cobre toda a região com tecnologia FTTH (Fiber to the Home), 
+                       garantindo máxima velocidade e estabilidade.</p>
+                    
+                    <div class="coverage-list">
+                        <div class="coverage-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Casimiro de Abreu - Cobertura Total</span>
+                        </div>
+                        <div class="coverage-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Professor Souza - Cobertura Total</span>
+                        </div>
+                        <div class="coverage-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Rio Dourado - Cobertura Total</span>
+                        </div>
+                        <div class="coverage-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Barra de são João - Em Expansão</span>
+                        </div>
+                    </div>
+
+                    <div class="coverage-cta">
+                        <a href="https://wa.me/552227781113" class="btn-primary">
+                            <i class="fas fa-search-location"></i>
+                            <span>Verificar Cobertura</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge" data-aos="fade-up">
+                    <i class="fas fa-comments"></i> Depoimentos
+                </span>
+                <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
+                    O Que Nossos <span class="text-gradient">Clientes</span> Dizem
+                </h2>
+            </div>
+
+            <div class="testimonials-slider" data-aos="fade-up" data-aos-delay="200">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Melhor internet da região! Velocidade incrível, nunca cai e o atendimento é excepcional. 
+                        Recomendo para todos!"
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/100?img=1" alt="Cliente">
+                        <div>
+                            <h4>João Silva</h4>
+                            <span>Cliente há 3 anos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Trabalho de casa e preciso de internet estável. A Entornet nunca me deixou na mão. 
+                        Qualidade e confiança!"
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/100?img=5" alt="Cliente">
+                        <div>
+                            <h4>Maria Santos</h4>
+                            <span>Cliente há 2 anos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Sou gamer e a latência baixa faz toda diferença. Com a Entornet, meu ping é sempre estável. 
+                        Perfeito para jogos!"
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/100?img=3" alt="Cliente">
+                        <div>
+                            <h4>Pedro Gamer</h4>
+                            <span>Cliente há 1 ano</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="support" class="support">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge" data-aos="fade-up">
+                    <i class="fas fa-life-ring"></i> Suporte
+                </span>
+                <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
+                    Estamos Sempre <span class="text-gradient">Prontos</span> Para Ajudar
+                </h2>
+            </div>
+
+            <div class="support-grid">
+                <div class="support-card" data-aos="flip-left" data-aos-delay="100">
+                    <div class="support-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp</h3>
+                    <p>(22) 2778-1113</p>
+                    <span class="support-time">Seg a Sáb - 8h às 21h</span>
+                    <a href="https://wa.me/552227781113" class="support-link">
+                        Chamar Agora <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="support-card" data-aos="flip-left" data-aos-delay="200">
+                    <div class="support-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Telefone</h3>
+                    <p>(22) 2778-1113</p>
+                    <span class="support-time">Seg a Sex - 8h às 18h</span>
+                    <a href="tel:+552227781113" class="support-link">
+                        Ligar Agora <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="support-card" data-aos="flip-left" data-aos-delay="300">
+                    <div class="support-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>E-mail</h3>
+                    <p>suporte@entornet.com.br</p>
+                    <span class="support-time">Resposta em até 2h</span>
+                    <a href="mailto:suporte@entornet.com.br" class="support-link">
+                        Enviar E-mail <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="support-card" data-aos="flip-left" data-aos-delay="400">
+                    <div class="support-icon">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h3>Área do Cliente</h3>
+                    <p>Central do Assinante</p>
+                    <span class="support-time">Disponível 24/7</span>
+                    <a href="http://ispadmin.entornet.com.br/prod/src/central/logincentral.php" class="support-link">
+                        Acessar <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <div class="cta-content" data-aos="zoom-in">
+                <h2 class="cta-title">
+                    Pronto Para Ter a <span class="text-gradient">Melhor Internet</span>?
+                </h2>
+                <p class="cta-description">
+                    Entre em contato agora mesmo e garanta sua conexão de fibra óptica
+                </p>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/552227781113" class="btn-cta-primary">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>Assinar Pelo WhatsApp</span>
+                    </a>
+                    <a href="tel:+552227781113" class="btn-cta-secondary">
+                        <i class="fas fa-phone"></i>
+                        <span>Ligar Agora</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="images/logo.png" alt="Entornet Fibra" class="footer-logo">
+                    <p>Há 21 anos conectando pessoas com o que há de melhor em internet fibra óptica.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#plans">Planos</a></li>
+                        <li><a href="#benefits">Benefícios</a></li>
+                        <li><a href="#coverage">Cobertura</a></li>
+                        <li><a href="#support">Suporte</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Atendimento</h4>
+                    <ul>
+                        <li><a href="https://wa.me/552227781113">WhatsApp</a></li>
+                        <li><a href="tel:+552227781113">Telefone</a></li>
+                        <li><a href="mailto:suporte@entornet.com.br">E-mail</a></li>
+                        <li><a href="#">Central do Cliente</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contato</h4>
+                    <p><i class="fas fa-phone"></i> (22) 2778-1113</p>
+                    <p><i class="fab fa-whatsapp"></i> (22) 99200-9993</p>
+                    <p><i class="fas fa-envelope"></i> suporte@entornet.com.br</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Casimiro de Abreu, RJ</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Entornet Fibra. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Float WhatsApp Button -->
+    <a href="https://wa.me/552227781113" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
