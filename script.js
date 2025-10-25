@@ -52,6 +52,64 @@ function jitterCounter(counterElement, baseValue) {
     }, 1000); // 1000ms = 1 segundo
 }
 
+let mainAnimationsStarted = false;
+
+/**
+ * Função 6: Inicia todas as animações principais do site (Velocímetro, AOS, Contadores, Hero)
+ */
+function startMainSiteAnimations() {
+    // Se as animações já foram iniciadas, não faça nada
+    if (mainAnimationsStarted) return;
+    
+    // 1. Marcar como iniciada
+    mainAnimationsStarted = true;
+    
+    // 2. Dar "Play" nas animações CSS (Velocímetro)
+    // Isso adiciona a classe 'animations-ready' ao <body>
+    document.body.classList.add('animations-ready');
+
+    // 3. Inicializar o AOS (Animate on Scroll)
+    AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100,
+        easing: 'ease-out-cubic'
+    });
+
+    // 4. Inicializar o OBSERVADOR DE CONTADORES
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px 0px -100px 0px'
+    };
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const element = entry.target;
+                const targetValue = element.getAttribute('data-value');
+                
+                if (targetValue) {
+                    const target = parseInt(targetValue, 10);
+                    animateCounter(element, target, 2000); 
+                    observer.unobserve(element);
+                }
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.stat-number').forEach(counter => {
+        counterObserver.observe(counter);
+    });
+
+    // 5. Inicializar a animação do Hero Text
+    const heroText = document.querySelector('.hero-text');
+    if (heroText) {
+        // Verifica se a animação já não está no estilo (para a página 'sobre.html')
+        if (!heroText.style.gridColumn) { 
+           heroText.style.animation = 'slideInUp 1s ease forwards';
+        }
+    }
+}
+
 /**
  * Função 3: Cria partículas de fundo
  */
@@ -123,15 +181,10 @@ function debounce(func, wait) {
 document.addEventListener('DOMContentLoaded', function() {
     
     // 1. Initialize AOS (Animate On Scroll)
-    AOS.init({
-        duration: 1000,
-        once: true,
-        offset: 100,
-        easing: 'ease-out-cubic'
-    });
+
 
     // 2. --- LÓGICA DAS ABAS DOS PLANOS ---
-    const tabButtons = document.querySelectorAll('.tab-btn,.btn-gamer, .emp');
+    const tabButtons = document.querySelectorAll('.tab-btn,.btn-gamer,.emp,.dedicado');
     const plansContents = document.querySelectorAll('.plans-content');
 
     if (tabButtons.length > 0 && plansContents.length > 0) {
@@ -156,11 +209,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 3. --- LÓGICA DO OBSERVADOR PARA OS CONTADORES ---
-    const observerOptions = {
-        threshold: 0.5, // 50% visível
-        rootMargin: '0px 0px -100px 0px'
-    };
 
     const counterObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -185,9 +233,38 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // 5. --- Animação de entrada do Hero ---
-    const heroText = document.querySelector('.hero-text');
-    if (heroText) {
-        heroText.style.animation = 'slideInUp 1s ease forwards';
+
+const speedSlider = document.getElementById('speedSlider');
+    const dedicatedSpeedValue = document.getElementById('dedicatedSpeedValue');
+    const dedicatedSpeedUnit = document.getElementById('dedicatedSpeedUnit');
+
+    // Verifica se o slider existe na página atual
+    if (speedSlider && dedicatedSpeedValue && dedicatedSpeedUnit) {
+        
+        // Função para atualizar o texto da velocidade
+        function updateSpeedDisplay() {
+            let value = parseInt(speedSlider.value);
+            
+            if (value >= 1000) {
+                // Converte para Giga (divide por 1000)
+                let gigaValue = (value / 1000).toFixed(1); 
+                // Remove o .0 se for número inteiro (ex: 1.0 -> 1)
+                gigaValue = gigaValue.endsWith('.0') ? gigaValue.slice(0, -2) : gigaValue;
+                
+                dedicatedSpeedValue.textContent = gigaValue;
+                dedicatedSpeedUnit.textContent = "GIGA";
+            } else {
+                // Mantém em Mega
+                dedicatedSpeedValue.textContent = value;
+                dedicatedSpeedUnit.textContent = "MEGA";
+            }
+        }
+
+        // Atualiza o display quando o slider é movido
+        speedSlider.addEventListener('input', updateSpeedDisplay);
+
+        // Atualiza o display na carga inicial (caso o valor padrão não seja 50)
+        updateSpeedDisplay(); 
     }
 
 }); // --- FIM DO DOMCONTENTLOADED ---
@@ -196,23 +273,28 @@ document.addEventListener('DOMContentLoaded', function() {
 // --- Loading Screen ---
 window.addEventListener('load', function() {
     const loadingScreen = document.querySelector('.loading-screen');
-    if (loadingScreen) { // Adiciona verificação
+    if (loadingScreen) {
         setTimeout(() => {
+            
+            // 1. Esconde a tela de loading
             loadingScreen.classList.add('hidden');
             
-            // --- MOSTRAR O MODAL DEPOIS DO LOAD ---
-            // Verifica se o modal já foi visto nesta sessão
+            // 2. Verifica se o modal deve aparecer
             if (!sessionStorage.getItem('gamerModalSeen')) {
-                // Chama a função que está dentro do 'DOMContentLoaded'
+                // Se NUNCA VIU, mostra o modal
                 if(typeof showGamerModal === 'function') {
                     showGamerModal(); 
                 }
-                // Marca como visto para esta sessão
                 sessionStorage.setItem('gamerModalSeen', 'true');
+                
+                // NÃO INICIA AS ANIMAÇÕES AQUI
+                
+            } else {
+                // Se JÁ VIU o modal, pula ele e inicia as animações
+                startMainSiteAnimations();
             }
-            // --- FIM DA LÓGICA DO MODAL ---
 
-        }, 7000); // 7s 
+        }, 5000); // 5s 
     }
 });
 const gamerModalOverlay = document.getElementById('gamerModalOverlay');
@@ -229,6 +311,9 @@ function hideGamerModal() {
     if (gamerModalOverlay) {
         gamerModalOverlay.classList.remove('active');
     }
+    
+    // --- GATILHO: Inicia as animações do site AGORA ---
+    startMainSiteAnimations();
 }
 
 // Adiciona os gatilhos para fechar o modal
@@ -566,3 +651,28 @@ style.textContent = `
 document.head.appendChild(style);
 
 console.log('Entornet Fibra - Site Moderno Carregado com Sucesso! 🚀');
+
+const gamerAwardImage = document.getElementById('gamerAwardImage');
+    const imageLightbox = document.getElementById('imageLightbox');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    // Verifica se os elementos existem (para não quebrar a index.html)
+    if (gamerAwardImage && imageLightbox && lightboxClose) {
+        
+        // 1. Abrir ao clicar na imagem
+        gamerAwardImage.addEventListener('click', () => {
+            imageLightbox.classList.add('active');
+        });
+
+        // 2. Fechar ao clicar no 'X'
+        lightboxClose.addEventListener('click', () => {
+            imageLightbox.classList.remove('active');
+        });
+
+        // 3. Fechar ao clicar no fundo (overlay)
+        imageLightbox.addEventListener('click', (e) => {
+            if (e.target === imageLightbox) { // Se o clique foi no fundo
+                imageLightbox.classList.remove('active');
+            }
+        });
+    }

@@ -121,6 +121,43 @@ body {
     text-align: center;
 }
 
+.loader-visual {
+    position: relative; /* Âncora para a logo */
+    width: 80px;  /* Mesmo tamanho do círculo */
+    height: 80px; /* Mesmo tamanho do círculo */
+    margin: 0 auto 20px; /* Centraliza o wrapper e empurra o texto */
+    display: grid;
+    place-items: center;
+}
+
+.loader-circle {
+    width: 80px;
+    height: 80px;
+    border: 3px solid var(--gray-800);
+    border-top-color: var(--primary-yellow);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 1; 
+
+    grid-area: 1 / 1; 
+}
+
+/* --- Logo dentro do Círculo de Carregamento --- */
+.loader-logo {
+    width: 50px; 
+    height: auto;
+    opacity: 0.8;
+    filter: brightness(1.2);
+    opacity: 0.5;
+    z-index: 2; /* Garante que fique sobre o círculo */
+    grid-area: 1 / 1; 
+}
+
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
 .loader-text {
     font-size: 80px; /* Texto bem grande */
     font-weight: 700;
@@ -140,8 +177,8 @@ body {
        2. blink-caret: 0.75s de duração, loop infinito, começa aos 4s (3s typing + 1s delay)
     */
     animation: 
-        typing 3s steps(14, end) 1s forwards,
-        blink-caret 0.75s step-end 4s infinite;
+    typing 1.5s steps(14, end) 0.5s forwards, /* Inicia a digitação 1 segundo depois */
+    blink-caret 0.75s step-end 2.5s infinite; /* Pisca o cursor 4 segundos depois (1s delay + 3s typing) */
 }
 
 /* Novo estilo para o subtítulo */
@@ -169,12 +206,12 @@ body {
     */
     animation: fade-in-up 0.8s ease-out forwards;
 }
-.loader-subtitle span:nth-child(1) { animation-delay: 4.0s; }
-.loader-subtitle span:nth-child(2) { animation-delay: 4.2s; }
-.loader-subtitle span:nth-child(3) { animation-delay: 4.4s; }
-.loader-subtitle span:nth-child(4) { animation-delay: 4.6s; }
-.loader-subtitle span:nth-child(5) { animation-delay: 4.8s; }
-.loader-subtitle span:nth-child(6) { animation-delay: 5.0s; }
+.loader-subtitle span:nth-child(1) { animation-delay: 3s; } 
+.loader-subtitle span:nth-child(2) { animation-delay: 3.2s; }
+.loader-subtitle span:nth-child(3) { animation-delay: 3.4s; }
+.loader-subtitle span:nth-child(4) { animation-delay: 3.6s; }
+.loader-subtitle span:nth-child(5) { animation-delay: 3.8s; }
+.loader-subtitle span:nth-child(6) { animation-delay: 4s; }
 /* O @keyframes spin foi removido */
 
 /* Novas animações */
@@ -235,14 +272,14 @@ body {
     box-shadow: var(--shadow-2xl);
     overflow: hidden;
     background: var(--white);
-    
-    /* Animação de entrada (controlada por JS) */
-    transform: scale(0.95);
-    transition: transform 0.4s ease;
+    opacity: 0; /* Começa invisível */
+    transform: scale(0.95); /* Começa um pouco menor */
+    transition: transform 0.4s ease, opacity 0.4s ease; /* Transiciona ambos */
 }
 
 .modal-overlay.active .modal-window {
-    transform: scale(1);
+    opacity: 1; /* Fica visível */
+    transform: scale(1); /* Fica em tamanho normal */
 }
 
 /* Coluna da Esquerda (Azul) */
@@ -713,6 +750,43 @@ body {
     backdrop-filter: blur(20px);
     transform-style: preserve-3d;
     animation: float3d 6s ease-in-out infinite;
+    
+    /* --- ADICIONADO --- */
+    position: relative; /* Para ancorar o efeito de vento */
+    overflow: hidden;   /* Para conter o efeito dentro do card */
+    z-index: 1;         /* Para garantir que o card fique sobre o fundo da página */
+}
+
+
+.hero-3d-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%; /* Dobro da largura para a animação */
+    height: 100%;
+    z-index: -1; /* Coloca o efeito atrás do velocímetro */
+    
+    /* Cria as linhas de "vento" diagonais e sutis */
+    background-image: repeating-linear-gradient(
+        110deg, /* O ângulo das linhas */
+        transparent,
+        transparent 15px,
+        rgba(255, 255, 255, 0.02) 15px, /* Cor sutil da "poeira" */
+        rgba(255, 255, 255, 0.02) 16px  /* Espessura de 1px */
+    );
+    
+    /* Animação: 1s de duração, linear, infinita */
+    animation: wind-effect 0.2s linear infinite;
+}
+
+@keyframes wind-effect {
+    0% {
+        transform: translateX(0); /* Posição inicial */
+    }
+    100% {
+        transform: translateX(-50%); /* Posição final (cria o loop) */
+    }
 }
 
 @keyframes float3d {
@@ -722,6 +796,54 @@ body {
     75% { transform: perspective(1000px) rotateY(5deg) rotateX(-5deg); }
 }
 
+.particles-dust {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Permite clicar através das partículas */
+    z-index: 1; /* Fica atrás do velocímetro */
+}
+
+/* Camada 1: Partículas pequenas e rápidas (fundo) */
+#dust-layer-1 {
+    /* Gera pontos de 1px com cor sutil */
+    background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 40px 40px; /* Densidade das partículas */
+    animation: dust-move-1 0.2s linear infinite; /* Animação rápida */
+}
+
+/* Camada 2: Partículas médias (meio) */
+#dust-layer-2 {
+    /* Gera pontos de 2px, mais transparentes */
+    background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 3px, transparent 3px);
+    background-size: 80px 80px;
+    animation: dust-move-2 0.2s linear infinite; /* Animação média */
+}
+
+/* Camada 3: Partículas maiores e lentas (frente) */
+#dust-layer-3 {
+    /* Gera pontos de 3px, muito transparentes */
+    background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.06) 4px, transparent 4px);
+    background-size: 120px 120px;
+    animation: dust-move-3 0.2s linear infinite; /* Animação lenta */
+}
+
+/* Animações (move da direita para a esquerda) */
+@keyframes dust-move-1 {
+    from { background-position: 0 0; }
+    to { background-position: -40px 0; } /* Loop perfeito (usa o background-size) */
+}
+@keyframes dust-move-2 {
+    from { background-position: 0 0; }
+    to { background-position: -80px 0; } /* Loop perfeito */
+}
+@keyframes dust-move-3 {
+    from { background-position: 0 0; }
+    to { background-position: -120px 0; } /* Loop perfeito */
+}
+
 /* Novos Estilos do Velocímetro (Estilo Ookla) */
 .speed-meter {
     text-align: center;
@@ -729,7 +851,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-bottom: 2rem; /* Adiciona espaço para não cortar */
+    padding-bottom: 2rem;
+    position: relative;
+    z-index: 2;
 }
 
 .speed-circle {
@@ -766,13 +890,14 @@ body {
     animation: 
     speedAnimationNew 2s ease-out 1s forwards,
     jitterArc 1s ease-in-out 3s infinite alternate;
+    animation-play-state: paused;
 }
 
 /* Nova animação de preenchimento do arco */
 @keyframes speedAnimationNew {
     from { stroke-dashoffset: 424; }
 
-    to { stroke-dashoffset: 71.7; } 
+    to { stroke-dashoffset: 29.3; } 
 }
 
 .gauge-needle-svg {
@@ -792,6 +917,7 @@ body {
         needleSweepNew 2s ease-out 1s forwards,
         /* Animação 2: O jitter, começa aos 3s, dura 1s, loop infinito */
         jitterNeedle 1s ease-in-out 3s infinite alternate;
+        animation-play-state: paused;
 }
 
 /* Ponto central */
@@ -813,7 +939,7 @@ body {
     /* Valor alvo: 831/1000 = 83.1%
        Posição final = (0.831 * 270) - 135 = 89.37
     */
-    to { transform: translate(-50%, -100%) rotate(89.4deg); } /* Posição 831 */
+    to { transform: translate(-50%, -100%) rotate(116.4deg); } /* Posição 831 */
 }
 
 /* Leitura digital */
@@ -844,16 +970,65 @@ body {
     margin-top: -0.25rem;
 }
 
+.gauge-label {
+    position: absolute;
+    color: var(--gray-500);
+    font-size: 0.8rem;
+    font-weight: 700;
+    /* Centraliza o número em seu ponto de âncora */
+    transform: translate(-50%, -50%); 
+}
+
+/* Posições calculadas (0-1000 em um arco de -135deg a +135deg) */
+
+/* Posição 0 (Valor 0%) */
+.label-0 {
+    top: 185px;  /* (y = 125 + 85*sin(225)) -- aproximado */
+    left: 65px;  /* (x = 125 + 85*cos(225)) -- aproximado */
+}
+
+/* Posição 250 (Valor 25%) */
+.label-250 {
+    top: 93px;
+    left: 47px;
+}
+
+/* Posição 500 (Valor 50%) */
+.label-500 {
+    top: 40px;
+    left: 125px;
+}
+
+/* Posição 750 (Valor 75%) */
+.label-750 {
+    top: 93px;
+    left: 203px;
+}
+
+/* Posição 1000 (Valor 100%) */
+.label-1000 {
+    top: 185px;
+    left: 185px;
+}
+
 @keyframes jitterNeedle {
-    0% { transform: translate(-50%, -100%) rotate(89.4deg); } /* Posição 831 */
-    50% { transform: translate(-50%, -100%) rotate(88.4deg); } /* Um pouco menos */
-    100% { transform: translate(-50%, -100%) rotate(90.4deg); } /* Um pouco mais */
+    0% { transform: translate(-50%, -100%) rotate(116.4deg); } /* Posição 931 */
+    50% { transform: translate(-50%, -100%) rotate(115.4deg); } /* Um pouco menos */
+    100% { transform: translate(-50%, -100%) rotate(117.4deg); } /* Um pouco mais */
 }
 
 @keyframes jitterArc {
-    0% { stroke-dashoffset: 71.7; } /* Posição 831 */
-    50% { stroke-dashoffset: 74; }   /* Um pouco menos */
-    100% { stroke-dashoffset: 69; }   /* Um pouco mais */
+    0% { stroke-dashoffset: 29.3; } /* Posição 931 */
+    50% { stroke-dashoffset: 32; }   /* Um pouco menos */
+    100% { stroke-dashoffset: 27; }   /* Um pouco mais */
+}
+
+.ti_vel {
+    font-size: 60px;
+    font-weight: 700;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* Hero Wave */
@@ -949,7 +1124,7 @@ section {
     margin-bottom: 3rem;
 }
 
-.tab-btn,.emp,.btn-gamer {
+.tab-btn,.emp,.btn-gamer,.dedicado {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--gray-400);
@@ -975,7 +1150,25 @@ section {
     color: var(--black);
 }
 
-.tab-btn,.btn-gamer,.emp:hover {
+.dedicado.active {
+    background: var(--gradient-secondary);
+    border-color: transparent;
+    color: var(--black); 
+}
+
+.emp:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--white);  
+}
+
+.btn-gamer:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--white);
+}
+
+.dedicado:hover {
     background: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.2);
     color: var(--white);
@@ -1098,6 +1291,88 @@ section {
     align-items: baseline;
     justify-content: center;
     gap: 0.5rem;
+}
+
+
+.dedicated-card {
+    grid-column: 1 / -1;
+    max-width: 600px;
+    margin: 0 auto;
+    border-color: #696969;
+    background: linear-gradient(135deg, rgb(96 90 255 / 10%) 0%, rgb(0 102 119 / 10%) 100%);
+}
+
+#dedicatedSpeedValue {
+    font-size: 3rem;
+    font-weight: 900;
+    background: white;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.dedicated-card:hover {
+    border-color: var(--primary-purple);
+    box-shadow: 0 20px 40px rgba(124, 58, 237, 0.3); /* Sombra roxa no hover */
+}
+
+.dedicated-speed-display {
+    margin-bottom: 2rem; /* Mais espaço abaixo da velocidade */
+}
+
+/* Container do Slider */
+.dedicated-slider-container {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.dedicated-slider-container label {
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--gray-400);
+    font-weight: 500;
+}
+
+/* Estilo do Slider */
+.speed-slider {
+    -webkit-appearance: none; /* Remove estilo padrão */
+    appearance: none;
+    width: 100%;
+    height: 10px; /* Altura da barra */
+    background: var(--gray-800); /* Cor de fundo da barra */
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Estilo do "polegar" (a bolinha que desliza) - Chrome/Edge/Safari */
+.speed-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px; /* Tamanho da bolinha */
+    height: 25px;
+    background: var(--gradient-secondary); /* Usa o gradiente roxo */
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Estilo do "polegar" - Firefox */
+.speed-slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: var(--gradient-secondary);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none; /* Remove borda padrão do Firefox */
+}
+
+/* Labels Min/Max do Slider */
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--gray-500);
 }
 
 .speed-value {
@@ -1333,11 +1608,47 @@ section {
     font-weight: 600;
     font-size: 0.9rem;
     animation: bounce 2s ease-in-out infinite;
+    flex-direction: column-reverse;
 }
 
-.pin-1 { top: 55%; left: 44%; animation-delay: 0s; } /* Casimiro */
-.pin-2 { top: 49%; left: 50%; animation-delay: 0.3s; } /* Professor Souza */
-.pin-3 { top: 43%; left: 55%; animation-delay: 0.6s; } /* Rio Dourado */
+.map-pin1 {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgb(119, 0, 255);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-weight: 900;
+    font-size: 25px;
+    animation: bounce 2s ease-in-out infinite;
+    flex-direction: column-reverse;
+}
+
+.map-pin4 {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgb(255, 0, 0);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    animation: bounce 2s ease-in-out infinite;
+    flex-direction: column-reverse;
+}
+
+.namecity {
+    font-size: 7px;
+    font-weight: 700;
+    color: rgb(0, 0, 0);
+}
+
+.pin-1 { top: 49.5%; left: 45%; animation-delay: 0s; } /* Casimiro */
+.pin-2 { top: 52%; left: 53%; animation-delay: 0.3s; } /* Professor Souza */
+.pin-3 { top: 54%; left: 57%; animation-delay: 0.6s; }
+.pin-4 { top: 56%; left: 61%; animation-delay: 0.6s; } /* Rio Dourado */
 
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
@@ -1846,4 +2157,341 @@ section {
     .hero-wave {
         bottom: -8px;
     }   
+}
+
+
+body.animations-ready .speed-progress-new,
+body.animations-ready .gauge-needle-svg {
+    animation-play-state: running;
+}
+
+
+.award-section {
+    background: var(--gray-900);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Layout de 2 colunas (copiado de .coverage-content) */
+.award-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+/* Container da Imagem (copiado de .coverage-map) */
+.award-image {
+    position: relative;
+}
+
+/* Container específico da imagem (copiado de .map-container, MAS SEM O MAPA) */
+.award-image-container {
+    position: relative;
+    background: linear-gradient(135deg, rgba(253, 184, 19, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 1rem;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Texto ao lado (copiado de .coverage-info) */
+.award-text h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.award-text p {
+    color: var(--gray-400);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+/* Responsivo (copiado) */
+@media (max-width: 1024px) {
+    .award-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+.clickable-image {
+    cursor: pointer;
+    transition: var(--transition-base);
+}
+.clickable-image:hover {
+    transform: scale(1.03); /* Leve zoom ao passar o mouse */
+    box-shadow: var(--shadow-xl);
+}
+
+/* 2. O fundo escuro (overlay) */
+.image-lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(10, 10, 10, 0.9); /* Mais escuro para focar na imagem */
+    backdrop-filter: blur(10px);
+    z-index: 10002; /* Acima do outro modal */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Controlado por JS */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.image-lightbox-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 3. A imagem expandida */
+.image-lightbox-overlay img {
+    max-width: 90%;
+    max-height: 80vh; /* 80% da altura da tela */
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: var(--shadow-2xl);
+}
+
+/* 4. O botão de fechar 'X' */
+.lightbox-close-btn {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: none;
+    border: none;
+    font-size: 3rem; /* Maior e mais fácil de ver */
+    line-height: 1;
+    color: var(--gray-300);
+    cursor: pointer;
+    transition: var(--transition-base);
+}
+.lightbox-close-btn:hover {
+    color: var(--white);
+    transform: rotate(90deg);
+}
+
+
+.contact-grid-new {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+/* Novo card (baseado no .support-card mas com text-align: left) */
+.contact-card-new {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: left; /* CORREÇÃO PRINCIPAL */
+    transition: var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-card-new:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(6, 182, 212, 0.3);
+    box-shadow: 0 20px 40px rgba(6, 182, 212, 0.2);
+}
+
+/* Novo ícone (baseado no da captura de tela) */
+.contact-icon-new {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    color: var(--white);
+}
+
+.contact-card-new h3 {
+    font-size: 1.5rem; /* Ajustado */
+    font-weight: 700;
+    margin-bottom: 1rem; /* Ajustado */
+}
+
+.contact-card-new p {
+    color: var(--gray-400);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-link-new {
+    display: block; /* Um link por linha */
+    color: var(--primary-cyan);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition-base);
+    margin-bottom: 0.75rem; /* Mais espaço */
+    font-size: 1.1rem;
+}
+.contact-link-new:hover {
+    color: var(--white);
+}
+.contact-link-new i {
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+    margin-right: 0.5rem;
+}
+
+/* Lista de horários */
+.horarios-list-new {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    color: var(--gray-300);
+}
+.horarios-list-new li {
+    margin-bottom: 0.5rem;
+}
+.horarios-list-new li strong {
+    color: var(--white);
+    min-width: 90px;
+    display: inline-block;
+}
+.plantao-title-new {
+    font-weight: 700;
+    color: var(--primary-cyan) !important;
+    margin-top: 1rem;
+    border-top: 1px solid var(--gray-800);
+    padding-top: 1rem;
+}
+
+.contact-button-new {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centraliza o conteúdo (ícone + texto) */
+    text-decoration: none;
+    
+    background: var(--white); /* Fundo branco */
+    color: var(--gray-900); /* Texto escuro */
+    
+    font-size: 1rem;
+    font-weight: 700;
+    
+    padding: 1rem;
+    margin-bottom: 1rem; /* Espaço entre os botões */
+    
+    border: 1px solid var(--gray-200);
+    border-radius: 12px; /* Bordas arredondadas */
+    
+    transition: var(--transition-base);
+}
+
+.contact-button-new:hover {
+    background: var(--gray-100);
+    border-color: var(--gray-300);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.contact-button-new i {
+    margin-right: 0.75rem; /* Espaço entre ícone e texto */
+    color: var(--primary-blue); /* Cor do ícone */
+}
+
+
+.gamer-award-badge-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+/* O Selo (baseado na imagem) */
+.gamer-award-badge {
+    width: 100%;
+    max-width: 300px;
+    background: linear-gradient(135deg, rgb(34 55 255 / 42%) 0%, rgb(0 7 59 / 88%) 100%);
+    border: 1px solid rgb(242 255 0);
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    color: var(--white);
+    box-shadow: var(--shadow-lg);
+}
+
+.gamer-award-badge .fa-trophy {
+    font-size: 3.5rem;
+    color: var(--primary-yellow);
+    margin-bottom: 1rem;
+}
+
+.gamer-award-badge h3 {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+}
+
+.gamer-award-badge p {
+    font-size: 1rem;
+    color: var(--gray-300);
+    margin-bottom: 0.25rem;
+}
+
+.gamer-award-badge span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gray-400);
+}
+
+/* Coluna de Texto */
+.gamer-award-text-content h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+}
+
+.gamer-award-text-content p {
+    font-size: 1rem;
+    color: var(--gray-400);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+/* O screenshot do prêmio */
+.award-screenshot {
+    background: var(--gray-900);
+    border: 1px solid var(--gray-800);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-base);
+}
+
+.award-screenshot:hover {
+    transform: scale(1.02);
+}
+
+.award-screenshot img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Ajuste responsivo para a nova seção */
+@media (max-width: 1024px) {
+     .gamer-award-badge-container {
+         margin-bottom: 2rem; /* Adiciona espaço no mobile */
+     }
 }
