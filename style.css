@@ -796,54 +796,6 @@ body {
     75% { transform: perspective(1000px) rotateY(5deg) rotateX(-5deg); }
 }
 
-.particles-dust {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none; /* Permite clicar através das partículas */
-    z-index: 1; /* Fica atrás do velocímetro */
-}
-
-/* Camada 1: Partículas pequenas e rápidas (fundo) */
-#dust-layer-1 {
-    /* Gera pontos de 1px com cor sutil */
-    background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-    background-size: 40px 40px; /* Densidade das partículas */
-    animation: dust-move-1 0.2s linear infinite; /* Animação rápida */
-}
-
-/* Camada 2: Partículas médias (meio) */
-#dust-layer-2 {
-    /* Gera pontos de 2px, mais transparentes */
-    background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 3px, transparent 3px);
-    background-size: 80px 80px;
-    animation: dust-move-2 0.2s linear infinite; /* Animação média */
-}
-
-/* Camada 3: Partículas maiores e lentas (frente) */
-#dust-layer-3 {
-    /* Gera pontos de 3px, muito transparentes */
-    background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.06) 4px, transparent 4px);
-    background-size: 120px 120px;
-    animation: dust-move-3 0.2s linear infinite; /* Animação lenta */
-}
-
-/* Animações (move da direita para a esquerda) */
-@keyframes dust-move-1 {
-    from { background-position: 0 0; }
-    to { background-position: -40px 0; } /* Loop perfeito (usa o background-size) */
-}
-@keyframes dust-move-2 {
-    from { background-position: 0 0; }
-    to { background-position: -80px 0; } /* Loop perfeito */
-}
-@keyframes dust-move-3 {
-    from { background-position: 0 0; }
-    to { background-position: -120px 0; } /* Loop perfeito */
-}
-
 /* Novos Estilos do Velocímetro (Estilo Ookla) */
 .speed-meter {
     text-align: center;
@@ -852,8 +804,6 @@ body {
     align-items: center;
     justify-content: center;
     padding-bottom: 2rem;
-    position: relative;
-    z-index: 2;
 }
 
 .speed-circle {
